@@ -1,3 +1,4 @@
+import { ListTD } from "@/presentation/components";
 import React from "react";
 import { FormTD } from "./presentation/components";
 
@@ -7,6 +8,7 @@ const Home: React.FC<HomeInterface> = () => {
 	return (
 		<section>
 			<FormTD />
+			<ListTD />
 		</section>
 	);
 };
