@@ -8,4 +8,15 @@ export class ToDOListItem {
 		this.description = description;
 		this.id = id;
 	}
+
+	toString() {
+		return (
+			"{title:" +
+			this.title +
+			",description:" +
+			this.description +
+			",id:" +
+			this.id.toString()
+		);
+	}
 }
