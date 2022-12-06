@@ -7,10 +7,7 @@ import getToDoListPresenter from "./ListTDPresenter";
 interface ListInterface {}
 
 const ListTD: React.FC<ListInterface> = () => {
-	// TODO implement a useEffect maybe here or at App.jsx to implement
-	// TODO the use case and the repo so it can load
-
-	const toDoListState = useAppSelector((state) => state.toDoList);
+	const toDoListState = useAppSelector((state) => state.toDoList.value);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {

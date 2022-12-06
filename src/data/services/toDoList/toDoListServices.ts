@@ -1,3 +1,4 @@
+//* Gets the data
 export function getTodoListApi(): string {
 	//TODO make a call to the api
 	//? since there is not an api YET I implemented

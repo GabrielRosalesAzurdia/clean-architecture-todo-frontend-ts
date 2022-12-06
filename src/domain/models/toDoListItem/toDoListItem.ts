@@ -1,22 +1,9 @@
-export class ToDOListItem {
+//* To do list item structure
+
+//* Id is optional since the id is not given at the frontend but
+//* when returned from the backend
+export interface ToDoListItem {
 	title: string;
 	description: string;
-	id: number;
-
-	constructor(title: string, description: string, id: number) {
-		this.title = title;
-		this.description = description;
-		this.id = id;
-	}
-
-	toString() {
-		return (
-			"{title:" +
-			this.title +
-			",description:" +
-			this.description +
-			",id:" +
-			this.id.toString()
-		);
-	}
+	id?: string;
 }

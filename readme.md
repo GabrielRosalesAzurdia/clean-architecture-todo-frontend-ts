@@ -167,3 +167,37 @@ Los slices están dentro de la carpeta `redux` en la carpeta `slices`
 
 Los typed hooks que sirven para que las funciones dispatch() y useSelector()
 tengan un tipo y typescript pueda ayudar a dar flag si cometemos algún error
+
+### NOTAS IMPORTANTES
+
+Dentro del store no pueden haber cosas que no sean serializables, es decir
+que no tengan una manera sencilla de convertirse a json, el store solo 
+acepta y debe tener elementos básicos de javascript y diccionarios, no puede
+contener instancias de clases o clases personalizadas
+
+También dentro del store no pueden haber objetos mutables ni tampoco podemos
+alterar el valor de estos objetos solo alterandolos en los reducers, lo ideal
+es crear un nuevo objeto persistente, por ejemplo en un array no podemos
+usar un .push para añadir algo, debemos crear un array nuevo desde 0 colocando
+los viejos elementos y los nuevos. Puede que toolkit lo admita de la manera
+mutable pero puede ocasionar bugs que no actualize los componentes.
+
+## UUID
+
+podemos utilizar la biblioteca llamada uuid para crear id únicos, de esta manera
+no tenemos que recurir en el math.random pues no es de fiar a la hora de crear 
+elementos únicos.
+
+>   npm install uuid
+
+y sus tipos:
+
+> npm install --save @types/uuid
+
+y se usa de la siguiente manera:
+
+> import {v4 as uuid} from "uuid"
+
+> ...
+
+> id:uuid(),

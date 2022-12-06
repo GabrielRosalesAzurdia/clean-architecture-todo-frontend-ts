@@ -1,3 +1,4 @@
+import getToDoListPresenter from "@/presentation/components/ListTD/ListTDPresenter";
 import { useAppDispatch, useAppSelector } from "@/presentation/redux/hooks";
 import { updateToDoList } from "@/presentation/redux/slices/toDoListSlice";
 import React from "react";
@@ -15,16 +16,17 @@ A non-serializable value but a simple dictionary.
 interface FormInterface {}
 
 const FormTD: React.FC<FormInterface> = () => {
-	const toDoListState = useAppSelector((state) => state.toDoList);
 	const dispatch = useAppDispatch();
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		let newToDoListItem = formTDAddItemPresenter(
+		formTDAddItemPresenter(
 			e.target.tittle.value,
 			e.target.description.value
 		);
-		dispatch(updateToDoList([...toDoListState, newToDoListItem]));
+		let toDoListPresenter = getToDoListPresenter();
+		//? Change to match with the usecase from the list
+		dispatch(updateToDoList(toDoListPresenter));
 	};
 
 	return (

@@ -1,14 +1,9 @@
-import { ToDOListItem } from "@/domain/models/toDoListItem";
+import { toDoListItemApi } from "@/domain/models";
 
-export interface toDoListItemApiInterface{
-	id:number,
-	message:string,
-	title:string,
-}
-
-export function addItemToListApi(item: toDoListItemApiInterface):string {
+//* Gets the data
+export function addItemToListApi(item: toDoListItemApi): string {
 	//TODO make a call to the api
-	//? since there is not an api YET I implemented 
+	//? since there is not an api YET I implemented
 	//? a local storeage mock, this will be only the
 	//? api call without logic
 	const listLS = localStorage.getItem("todolist");
@@ -21,9 +16,10 @@ export function addItemToListApi(item: toDoListItemApiInterface):string {
 	return "{succes:200}";
 }
 
-export function deleteItemFromListApi(id:number):string {
+//* Gets the data
+export function deleteItemFromListApi(id: string): string {
 	//TODO make a call to the api
-	//? since there is not an api YET I implemented 
+	//? since there is not an api YET I implemented
 	//? a local storeage mock, this will be only the
 	//? api call without logic
 	const listLS = localStorage.getItem("todolist");
@@ -31,7 +27,9 @@ export function deleteItemFromListApi(id:number):string {
 		throw console.error("el Local Store fallo en deleteTodoListItem");
 	}
 	let list = JSON.parse(listLS);
-	let newList = list.filter((element:toDoListItemApiInterface) => element.id != id);
+	let newList = list.filter(
+		(element: toDoListItemApi) => element.id != id
+	);
 	localStorage.setItem("todolist", JSON.stringify(newList));
 	return "{succes:200}";
 }

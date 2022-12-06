@@ -1,9 +1,7 @@
-import { ToDOListItem } from "../toDoListItem/toDoListItem";
+import { ToDoListItem } from "../toDoListItem/toDoListItem";
 
-export class ToDoList {
-	value: ToDOListItem[];
+//* Definition of a list that is going to have a bunch of toDoListItems 
 
-	constructor(value: ToDOListItem[]) {
-		this.value = value;
-	}
+export interface ToDoList {
+	value: ToDoListItem[];
 }

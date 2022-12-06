@@ -1,17 +1,17 @@
 import { ToDoList } from "@/domain/models/toDoList";
-import { ToDOListItem } from "@/domain/models/toDoListItem";
+import { ToDoListItem } from "@/domain/models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 //? Se crea un tipo para el initialState para que sea fácil de manejar
-type InitialState = ToDOListItem[];
-const initialState: InitialState = [];
+type InitialState = ToDoList;
+const initialState: InitialState = { value: [] };
 
 export const toDoListSlice = createSlice({
 	name: "toDoList",
 	initialState,
 	reducers: {
-		updateToDoList: (state, action: PayloadAction<ToDOListItem[]>) => {
-			return (state = action.payload);
+		updateToDoList: (state, action: PayloadAction<ToDoListItem[]>) => {
+			return (state = { value: action.payload });
 		},
 	},
 });

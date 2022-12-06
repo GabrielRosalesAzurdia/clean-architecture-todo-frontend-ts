@@ -1,11 +1,13 @@
-import { ToDOListItem } from "@/domain/models/toDoListItem";
+import { ToDoListItem } from "@/domain/models";
 import { toDoListItemRepository } from "@/domain/repositories";
 
+//* Definition of the UseCase, what it needs and what will return
 export interface toDoListItemUseCases {
-	addItem(item: ToDOListItem): string;
-	deleteItem(id: number): string;
+	addItem(item: ToDoListItem): string;
+	deleteItem(id: string): string;
 }
 
+//* Implementation of the UseCase Using the Repository
 export class toDoListItemUseCasesImpl implements toDoListItemUseCases {
 	repository: toDoListItemRepository;
 
@@ -13,11 +15,11 @@ export class toDoListItemUseCasesImpl implements toDoListItemUseCases {
 		this.repository = repository;
 	}
 
-	addItem(item: ToDOListItem) {
+	addItem(item: ToDoListItem) {
 		return this.repository.addItemToList(item);
 	}
 
-	deleteItem(id: number) {
+	deleteItem(id: string) {
 		return this.repository.deleteItemFromList(id);
 	}
 }
