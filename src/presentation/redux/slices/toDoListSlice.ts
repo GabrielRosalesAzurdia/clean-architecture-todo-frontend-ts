@@ -10,11 +10,16 @@ export const toDoListSlice = createSlice({
 	name: "toDoList",
 	initialState,
 	reducers: {
-		updateToDoList: (state, action: PayloadAction<ToDoListItem[]>) => {
+		//* Sets all the list to be the payload, use when calling the api
+		setToDoList: (state, action: PayloadAction<ToDoListItem[]>) => {
 			return (state = { value: action.payload });
+		},
+		//* Add an item to the list, use when using the form
+		addToDoList: (state, action: PayloadAction<ToDoListItem>) => {
+			return (state = { value: [...state.value, action.payload] });
 		},
 	},
 });
 
-export const { updateToDoList } = toDoListSlice.actions;
+export const { addToDoList, setToDoList } = toDoListSlice.actions;
 export default toDoListSlice.reducer;

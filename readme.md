@@ -186,7 +186,7 @@ mutable pero puede ocasionar bugs que no actualize los componentes.
 
 podemos utilizar la biblioteca llamada uuid para crear id únicos, de esta manera
 no tenemos que recurir en el math.random pues no es de fiar a la hora de crear 
-elementos únicos.
+elementos únicos. Los id que da son de tipo string
 
 >   npm install uuid
 
@@ -201,3 +201,14 @@ y se usa de la siguiente manera:
 > ...
 
 > id:uuid(),
+
+## Presentational y Container components
+
+Los componentes que arman una página o vista se dividirán en dos 
+los que son Presentational (Se preocupa por como se VEN las cosas)
+Container o inteligente (Se preocupa por como FUNCIONAN las cosas) usualmente el
+que se llama es el container y este tiene dentro al presentational.
+
+Normalmente si se tiene un componente que muestra un formulario al 
+componente presentational solo se le llama form.jsx mientras que al 
+container se le aclara colocando formContainer.jsx

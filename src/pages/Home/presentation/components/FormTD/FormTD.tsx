@@ -1,34 +1,10 @@
-import getToDoListPresenter from "@/presentation/components/ListTD/ListTDPresenter";
-import { useAppDispatch, useAppSelector } from "@/presentation/redux/hooks";
-import { updateToDoList } from "@/presentation/redux/slices/toDoListSlice";
 import React from "react";
-import { formTDAddItemPresenter } from "./FormTDPresenter";
 
-/* 
+interface FormInterface {
+	handleSubmit(e: any): any;
+}
 
-TODO so i get an error because i'm puttng an instance of the TODoListItem in an 
-array in the store, so what i'm going to do is get rid of every instance of the 
-class and change the blody thing to be an interface so it wont be 
-A non-serializable value but a simple dictionary.
-
-*/
-
-interface FormInterface {}
-
-const FormTD: React.FC<FormInterface> = () => {
-	const dispatch = useAppDispatch();
-
-	const handleSubmit = (e: any) => {
-		e.preventDefault();
-		formTDAddItemPresenter(
-			e.target.tittle.value,
-			e.target.description.value
-		);
-		let toDoListPresenter = getToDoListPresenter();
-		//? Change to match with the usecase from the list
-		dispatch(updateToDoList(toDoListPresenter));
-	};
-
+const FormTD: React.FC<FormInterface> = ({ handleSubmit }) => {
 	return (
 		<div className="flex justify-center pt-6">
 			<div className="w-full max-w-xs">

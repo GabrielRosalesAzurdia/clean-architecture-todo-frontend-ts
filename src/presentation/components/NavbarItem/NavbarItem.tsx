@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
-import { isActiveNavbar } from "@/presentation/logic/NavbarItem/isActiveNavbar";
 
 interface NavbarItemInterface {
 	link: string;
@@ -10,7 +9,14 @@ interface NavbarItemInterface {
 const NavbarItem: React.FC<NavbarItemInterface> = ({ link, name }) => {
 	return (
 		<li className="mr-10">
-			<NavLink to={link} className={isActiveNavbar}>
+			<NavLink
+				to={link}
+				className={(isActive) =>
+					isActive
+						? "text-white font-extrabold underline"
+						: "text-white font-extrabold"
+				}
+			>
 				{name}
 			</NavLink>
 		</li>

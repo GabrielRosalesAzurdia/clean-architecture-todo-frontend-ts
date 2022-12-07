@@ -1,28 +1,19 @@
-import { useAppDispatch, useAppSelector } from "@/presentation/redux/hooks";
-import { updateToDoList } from "@/presentation/redux/slices/toDoListSlice";
-import React, { useEffect } from "react";
-import ListTDItem from "../ListTDItem/ListTDItem";
-import getToDoListPresenter from "./ListTDPresenter";
+import { ToDoListItem } from "@/domain/models";
+import React from "react";
+import { ListTDItem } from "../ListTDItem";
 
-interface ListInterface {}
+interface ListTDInterface {
+	toDoList: ToDoListItem[];
+	noDataText: string;
+}
 
-const ListTD: React.FC<ListInterface> = () => {
-	const toDoListState = useAppSelector((state) => state.toDoList.value);
-	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		let toDoListPresenter = getToDoListPresenter();
-		dispatch(updateToDoList(toDoListPresenter));
-	}, []);
-
-	const noDataText = "Everything is clear ; )";
-
+const ListTD: React.FC<ListTDInterface> = ({ toDoList, noDataText }) => {
 	return (
 		<div className="text-center pt-5">
 			<h2>Your todos are:</h2>
 			<div>
-				{toDoListState.length > 0 ? (
-					toDoListState.map((element) => (
+				{toDoList.length > 0 ? (
+					toDoList.map((element) => (
 						<ListTDItem
 							title={element.title}
 							description={element.description}
