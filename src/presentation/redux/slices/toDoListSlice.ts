@@ -22,7 +22,7 @@ export const toDoListSlice = createSlice({
 		deleteToDoListItem: (state, action: PayloadAction<string>) => {
 			return {
 				value: state.value.filter((element) => {
-					element.id != action.payload;
+					return element.id != action.payload;
 				}),
 			};
 		},
