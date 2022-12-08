@@ -1,7 +1,7 @@
 import { addItemToListApi, deleteItemFromListApi } from "@/data/services";
 import { ToDoListItem, toDoListItemApi } from "@/domain/models";
 import { toDoListItemRepository } from "@/domain/repositories";
-import {v4 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 
 //* Implements the repository with actual use of the services and adaptation
 //* of the data
@@ -13,7 +13,12 @@ export class ToDoListItemRepositoryImpl implements toDoListItemRepository {
 			message: item.description,
 		};
 		var response = addItemToListApi(toDoListItemAsApi);
-		return response;
+		let newToDoListItem: ToDoListItem = {
+			id: response.id,
+			title: response.title,
+			description: response.message,
+		};
+		return newToDoListItem;
 	}
 
 	deleteItemFromList(id: string) {

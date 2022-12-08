@@ -12,7 +12,6 @@ const ListTDContainer: React.FC<ListTDContainerInterface> = () => {
 
 	useEffect(() => {
 		dispatch(setToDoList(getListMethod()));
-		console.log("disparó useEffect");
 	}, []);
 
 	const noDataText = "Everything is clear ; )";

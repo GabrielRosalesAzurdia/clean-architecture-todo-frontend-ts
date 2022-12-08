@@ -1,7 +1,7 @@
 import { toDoListItemApi } from "@/domain/models";
 
 //* Gets the data
-export function addItemToListApi(item: toDoListItemApi): string {
+export function addItemToListApi(item: toDoListItemApi): toDoListItemApi {
 	//TODO make a call to the api
 	//? since there is not an api YET I implemented
 	//? a local storeage mock, this will be only the
@@ -13,7 +13,7 @@ export function addItemToListApi(item: toDoListItemApi): string {
 	const list = JSON.parse(listLS);
 	list.push(item);
 	localStorage.setItem("todolist", JSON.stringify(list));
-	return "{succes:200}";
+	return item;
 }
 
 //* Gets the data
@@ -31,5 +31,5 @@ export function deleteItemFromListApi(id: string): string {
 		(element: toDoListItemApi) => element.id != id
 	);
 	localStorage.setItem("todolist", JSON.stringify(newList));
-	return "{succes:200}";
+	return "{success:204}";
 }

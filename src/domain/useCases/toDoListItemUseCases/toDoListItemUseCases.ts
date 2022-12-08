@@ -3,7 +3,7 @@ import { toDoListItemRepository } from "@/domain/repositories";
 
 //* Definition of the UseCase, what it needs and what will return
 export interface toDoListItemUseCases {
-	addItem(item: ToDoListItem): string;
+	addItem(item: ToDoListItem): ToDoListItem;
 	deleteItem(id: string): string;
 }
 

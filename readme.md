@@ -212,3 +212,11 @@ que se llama es el container y este tiene dentro al presentational.
 Normalmente si se tiene un componente que muestra un formulario al 
 componente presentational solo se le llama form.jsx mientras que al 
 container se le aclara colocando formContainer.jsx
+
+## opciones:
+
+- Para eliminiar Si dar como respuesta un string y solo buscar con el id
+y un filter el elemento para eliminarlo del store
+
+- modificar el añadirItem para que no regurese un string sino que regrese
+el objeto que acaba de crear (1 petición y 1 solo elememnto)

@@ -15,11 +15,20 @@ export const toDoListSlice = createSlice({
 			return (state = { value: action.payload });
 		},
 		//* Add an item to the list, use when using the form
-		addToDoList: (state, action: PayloadAction<ToDoListItem>) => {
+		addToDoListItem: (state, action: PayloadAction<ToDoListItem>) => {
 			return (state = { value: [...state.value, action.payload] });
+		},
+		//* Delete an item from the list, use when using the list
+		deleteToDoListItem: (state, action: PayloadAction<string>) => {
+			return {
+				value: state.value.filter((element) => {
+					element.id != action.payload;
+				}),
+			};
 		},
 	},
 });
 
-export const { addToDoList, setToDoList } = toDoListSlice.actions;
+export const { deleteToDoListItem, addToDoListItem, setToDoList } =
+	toDoListSlice.actions;
 export default toDoListSlice.reducer;

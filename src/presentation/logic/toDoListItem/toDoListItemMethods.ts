@@ -7,14 +7,17 @@ export function addItemMethod(title: string, description: string) {
 	let toDoListItemUseCase = new toDoListItemUseCasesImpl(
 		toDoListItemRepository
 	);
-	let newToDoListItem: ToDoListItem = {
+	let newToDoListItem: ToDoListItem = toDoListItemUseCase.addItem({
 		title: title,
 		description: description,
-	};
-	toDoListItemUseCase.addItem(newToDoListItem);
+	});
 	return newToDoListItem;
 }
 
-export function deleteItemMethod() {
-    // TODO
+export function deleteItemMethod(id: string) {
+	let toDoListItemRepository = new ToDoListItemRepositoryImpl();
+	let toDoListItemUseCase = new toDoListItemUseCasesImpl(
+		toDoListItemRepository
+	);
+	return toDoListItemUseCase.deleteItem(id);
 }
