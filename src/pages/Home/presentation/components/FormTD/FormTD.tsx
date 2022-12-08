@@ -2,9 +2,17 @@ import React from "react";
 
 interface FormInterface {
 	handleSubmit(e: any): any;
+	handleChange(e: any): any;
+	title: string;
+	description: string;
 }
 
-const FormTD: React.FC<FormInterface> = ({ handleSubmit }) => {
+const FormTD: React.FC<FormInterface> = ({
+	handleSubmit,
+	handleChange,
+	title,
+	description,
+}) => {
 	return (
 		<div className="flex justify-center pt-6">
 			<div className="w-full max-w-xs">
@@ -15,16 +23,18 @@ const FormTD: React.FC<FormInterface> = ({ handleSubmit }) => {
 					<div className="mb-4">
 						<label
 							className="block text-gray-700 text-sm font-bold mb-2"
-							htmlFor="tittle"
+							htmlFor="title"
 						>
-							Tittle
+							Title
 						</label>
 						<input
 							className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="tittle"
-							name="tittle"
+							id="title"
+							name="title"
 							type="text"
-							placeholder="tittle"
+							placeholder="title"
+							onChange={handleChange}
+							value={title}
 						/>
 					</div>
 					<div className="mb-6">
@@ -40,6 +50,8 @@ const FormTD: React.FC<FormInterface> = ({ handleSubmit }) => {
 							name="description"
 							type="text"
 							placeholder="description"
+							onChange={handleChange}
+							value={description}
 						/>
 					</div>
 					<div className="flex flex-col">
