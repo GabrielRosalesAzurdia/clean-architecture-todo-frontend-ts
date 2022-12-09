@@ -1,4 +1,4 @@
-import { Responses } from "@/domain/models";
+import { Failure, Responses } from "@/domain/models";
 import { deleteItemMethod } from "@/presentation/logic";
 import { useAppDispatch } from "@/presentation/redux/hooks";
 import { deleteToDoListItem } from "@/presentation/redux/slices/toDoListSlice";
@@ -19,10 +19,15 @@ const ListTDItemContainer: React.FC<ListTDItemContainerInterface> = ({
 	const dispatch = useAppDispatch();
 
 	const handleClick = (id: string) => {
-		let deleneteRespone = deleteItemMethod(id);
-		if (deleneteRespone == Responses.SUCCESS_DELETE) {
-			dispatch(deleteToDoListItem(id));
-		}
+		deleteItemMethod(id).then((response) => {
+			if (response instanceof Failure) {
+				console.log("no pues salio failurse en ListTDItem");
+				return;
+			}
+			if (response == Responses.SUCCESS_DELETE) {
+				dispatch(deleteToDoListItem(id));
+			}
+		});
 	};
 
 	return (

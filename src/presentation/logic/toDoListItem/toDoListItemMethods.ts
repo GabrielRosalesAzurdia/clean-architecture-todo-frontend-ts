@@ -1,23 +1,23 @@
 import { ToDoListItemRepositoryImpl } from "@/data/repositoriesImpl";
-import { ToDoListItem } from "@/domain/models";
-import { toDoListItemUseCasesImpl } from "@/domain/useCases";
+import { Failure, ToDoListItem } from "@/domain/models";
+import { addItemImpl, deleteItemImpl } from "@/domain/useCases";
 
-export function addItemMethod(title: string, description: string) {
+export async function addItemMethod(
+	title: string,
+	description: string
+): Promise<ToDoListItem | Failure> {
 	let toDoListItemRepository = new ToDoListItemRepositoryImpl();
-	let toDoListItemUseCase = new toDoListItemUseCasesImpl(
-		toDoListItemRepository
-	);
-	let newToDoListItem: ToDoListItem = toDoListItemUseCase.addItem({
+	let toDoListItemUseCase = new addItemImpl(toDoListItemRepository);
+	let newToDoListItem = await toDoListItemUseCase.addItem({
 		title: title,
 		description: description,
 	});
 	return newToDoListItem;
 }
 
-export function deleteItemMethod(id: string) {
+export async function deleteItemMethod(id: string): Promise<string | Failure> {
 	let toDoListItemRepository = new ToDoListItemRepositoryImpl();
-	let toDoListItemUseCase = new toDoListItemUseCasesImpl(
-		toDoListItemRepository
-	);
-	return toDoListItemUseCase.deleteItem(id);
+	let toDoListItemUseCase = new deleteItemImpl(toDoListItemRepository);
+	let response = await toDoListItemUseCase.deleteItem(id);
+	return response;
 }

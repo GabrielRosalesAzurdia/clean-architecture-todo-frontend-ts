@@ -1,11 +1,12 @@
 import { ToDoListRepositoryImpl } from "@/data/repositoriesImpl";
-import { ToDoListItem } from "@/domain/models";
-import { ToDoListUseCasesImpl } from "@/domain/useCases";
+import { Failure, ToDoListItem } from "@/domain/models";
+import { getListImpl } from "@/domain/useCases";
 
-function getListMethod(): ToDoListItem[] {
+async function getListMethod(): Promise<ToDoListItem[]|Failure> {
 	let toDoListRepository = new ToDoListRepositoryImpl();
-	let toDoListUsecase = new ToDoListUseCasesImpl(toDoListRepository);
-	return toDoListUsecase.getlist();
+	let toDoListUsecase = new getListImpl(toDoListRepository);
+	let result = await toDoListUsecase.getlist();
+	return result;
 }
 
 export default getListMethod;

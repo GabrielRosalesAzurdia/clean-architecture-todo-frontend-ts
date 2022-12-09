@@ -1,3 +1,4 @@
+import { Failure } from "@/domain/models";
 import getListMethod from "@/presentation/logic/toDoList/toDoListMethods";
 import { useAppDispatch, useAppSelector } from "@/presentation/redux/hooks";
 import { setToDoList } from "@/presentation/redux/slices/toDoListSlice";
@@ -11,7 +12,13 @@ const ListTDContainer: React.FC<ListTDContainerInterface> = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(setToDoList(getListMethod()));
+		getListMethod().then((response) => {
+			if (response instanceof Failure) {
+				console.log("no pues salio failurse en listTD");
+				return;
+			}
+			dispatch(setToDoList(response));
+		});
 	}, []);
 
 	const noDataText = "Everything is clear ; )";

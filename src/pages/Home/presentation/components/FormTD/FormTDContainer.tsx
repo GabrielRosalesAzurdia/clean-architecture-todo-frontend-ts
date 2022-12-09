@@ -3,6 +3,7 @@ import FormTD from "./FormTD";
 import { useAppDispatch } from "@/presentation/redux/hooks";
 import { addToDoListItem } from "@/presentation/redux/slices/toDoListSlice";
 import { addItemMethod } from "@/presentation/logic";
+import { Failure } from "@/domain/models";
 
 interface FormTDContainerInterface {}
 
@@ -13,12 +14,17 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		let newToDoListItemFromMethod = addItemMethod(
-			e.target.title.value,
-			e.target.description.value
+		addItemMethod(e.target.title.value, e.target.description.value).then(
+			(response) => {
+				console.log(response);
+				if (response instanceof Failure) {
+					console.log("no pues salió Failure en formTDContainer");
+					return;
+				}
+				setformValues({ title: "", description: "" });
+				dispatch(addToDoListItem(response));
+			}
 		);
-		setformValues({ title: "", description: "" });
-		dispatch(addToDoListItem(newToDoListItemFromMethod));
 	};
 
 	const handleChange = (e: any) => {

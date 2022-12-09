@@ -223,21 +223,6 @@ cada elemento con QuestionItemContainer.
 - Enviar datos al backend para resibir las dudas sobre cambio utilizando 
 el modelo UserQuestion
 
-- Separar los usecases, para que no sea una clase sino que sean múltiples funciones
-
-- Los use case impl van junto a los normales en la capa de domain, cuidar que 
-no tengan dependencias más alla del repo, deben seguir teniendo una interface
-que sea la abstracción del usecase
-
-- Implementar promeses y async, esto debe ser manejado en el REPOSITORY y este
-debe manejar los errores, si hay un erorr no para ni crashea sino que devuelve
-otro tipo de dato, no una instancia de lo desado sino una instancia de algún objeto de
-error. Los servicios si devuelven el error, es el REPOSITORY quien lo trata
-
-En el servicio listamos como dato de devulución el objeto deseado como async y
-en caso de error pues namoas hacemos un trhow ServerException, que es un error propio,
-que son solo clases o interfaces 
-
 - IDEA: mantener el localStorage como almacenamiento local , da :). Guardar en el local storage al mismo tiempo que en el api y también actualizarlo según la api
 En el repositorio una sola functión como obtener lista de todos debe 
 hacer la mmada al api, si no jala llamar al localStorage, 
@@ -246,11 +231,10 @@ El store seguirá teniendo operaciones de agregar y eliminar elementos, esto
 para no hacer llamadas grandes a la api y solo agregar elementos individuales,
 ahorra recursos y llamadas a la api y al local.
 
-- NOTA: lo async await comienza en el service, pasa por el repository impolementado
-la instancia del tipo de error, el use case tambíen es async devolviendo ambas 
-posibles instancias y llega hasta el presentation quien ya es quien finalmente
-maneja los datos en la UI y el state.
-
 - SICLO DE LA PRESENTATION
 EVENT(HTML) -> LOGIC(JAVASCRIPT Y USECASES) -> STATE(REDUX Y CONTEXT)
-(PRESENTER)                     (CONTAINER)
+(PRESENTER)    (             CONTAINER                              )
+
+- PARA MANEJAR ASYNC
+SERVICIOS -> REPOSITORY -> USECASE  -> HANDLESOMETHING
+.then           ASYNC        ASYNC         .then

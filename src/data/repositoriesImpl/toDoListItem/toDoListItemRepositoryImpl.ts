@@ -1,28 +1,60 @@
-import { addItemToListApi, deleteItemFromListApi } from "@/data/services";
-import { ToDoListItem, toDoListItemApi } from "@/domain/models";
+import {
+	addItemToListApi,
+	addItemToListLocalStorage,
+	deleteItemFromListApi,
+	deleteItemFromListLocalStorage,
+	setTodoListLocaLStorage,
+} from "@/data/services";
+import {
+	Failure,
+	LocalStorageError,
+	LocaLStorageFailure,
+	ServerFailure,
+	ToDoListItem,
+} from "@/domain/models";
 import { toDoListItemRepository } from "@/domain/repositories";
-import { v4 as uuid } from "uuid";
 
 //* Implements the repository with actual use of the services and adaptation
 //* of the data
 export class ToDoListItemRepositoryImpl implements toDoListItemRepository {
-	addItemToList(item: ToDoListItem) {
-		let toDoListItemAsApi: toDoListItemApi = {
-			id: uuid(),
-			title: item.title,
-			message: item.description,
-		};
-		var response = addItemToListApi(toDoListItemAsApi);
-		let newToDoListItem: ToDoListItem = {
-			id: response.id,
-			title: response.title,
-			description: response.message,
-		};
-		return newToDoListItem;
+	async addItemToList(item: ToDoListItem): Promise<ToDoListItem | Failure> {
+		try {
+			let response = await addItemToListApi(item);
+			try {
+				addItemToListLocalStorage(response);
+			} catch (e) {
+				if (e instanceof LocalStorageError) {
+					setTodoListLocaLStorage([]);
+					addItemToListLocalStorage(response);
+				}
+				return new LocaLStorageFailure();
+			}
+			let newToDoListItem: ToDoListItem = {
+				id: response.id,
+				title: response.title,
+				description: response.message,
+			};
+			return newToDoListItem;
+		} catch {
+			return new ServerFailure();
+		}
 	}
 
-	deleteItemFromList(id: string) {
-		let response = deleteItemFromListApi(id);
-		return response;
+	async deleteItemFromList(id: string) {
+		try {
+			let response = await deleteItemFromListApi(id);
+			try {
+				deleteItemFromListLocalStorage(id);
+			} catch (e) {
+				if (e instanceof LocalStorageError) {
+					setTodoListLocaLStorage([]);
+					deleteItemFromListApi(id);
+				}
+				return new LocaLStorageFailure();
+			}
+			return response;
+		} catch {
+			return new ServerFailure();
+		}
 	}
 }
