@@ -1,6 +1,10 @@
 import { Failure, Responses } from "@/domain/models";
 import { deleteItemMethod } from "@/presentation/logic";
 import { useAppDispatch } from "@/presentation/redux/hooks";
+import {
+	turnOffLoading,
+	turnOnLoading,
+} from "@/presentation/redux/slices/loadingSlice";
 import { deleteToDoListItem } from "@/presentation/redux/slices/toDoListSlice";
 import React from "react";
 import ListTDItem from "./ListTDItem";
@@ -19,6 +23,7 @@ const ListTDItemContainer: React.FC<ListTDItemContainerInterface> = ({
 	const dispatch = useAppDispatch();
 
 	const handleClick = (id: string) => {
+		dispatch(turnOnLoading());
 		deleteItemMethod(id).then((response) => {
 			if (response instanceof Failure) {
 				console.log("no pues salio failurse en ListTDItem");
@@ -27,6 +32,7 @@ const ListTDItemContainer: React.FC<ListTDItemContainerInterface> = ({
 			if (response == Responses.SUCCESS_DELETE) {
 				dispatch(deleteToDoListItem(id));
 			}
+			dispatch(turnOffLoading());
 		});
 	};
 
