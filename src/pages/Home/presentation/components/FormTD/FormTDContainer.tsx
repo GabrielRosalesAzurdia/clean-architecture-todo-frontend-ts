@@ -4,6 +4,7 @@ import { useAppDispatch } from "@/presentation/redux/hooks";
 import { addToDoListItem } from "@/presentation/redux/slices/toDoListSlice";
 import { addItemMethod } from "@/presentation/logic";
 import { Failure } from "@/domain/models";
+import { turnOffLoading, turnOnLoading } from "@/presentation/redux/slices/loadingSlice";
 
 interface FormTDContainerInterface {}
 
@@ -14,6 +15,7 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
+		dispatch(turnOnLoading());
 		addItemMethod(e.target.title.value, e.target.description.value).then(
 			(response) => {
 				console.log(response);
@@ -23,6 +25,7 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 				}
 				setformValues({ title: "", description: "" });
 				dispatch(addToDoListItem(response));
+				dispatch(turnOffLoading());
 			}
 		);
 	};

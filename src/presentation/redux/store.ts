@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import toDoListReducer from "./slices/toDoListSlice";
+import loadingReduccer from "./slices/loadingSlice";
 
 export const store = configureStore({
 	reducer: {
 		toDoList: toDoListReducer,
+		loading: loadingReduccer,
 	},
 });
 
