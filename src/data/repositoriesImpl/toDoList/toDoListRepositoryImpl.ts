@@ -9,6 +9,7 @@ import {
 	LocaLStorageFailure,
 	ServerError,
 	ServerFailure,
+	ToDoList,
 	ToDoListItem,
 	toDoListItemApi,
 } from "@/domain/models";
@@ -17,7 +18,7 @@ import { toDoListRepository } from "@/domain/repositories";
 //* Implements the repository with actual use of the services and adaptation
 //* of the data
 export class ToDoListRepositoryImpl implements toDoListRepository {
-	async getToDoList(): Promise<ToDoListItem[] | Failure> {
+	async getToDoList(): Promise<ToDoList | Failure> {
 		try {
 			let toDoListApi = await getTodoListApi();
 			return listParsed(toDoListApi, true);
@@ -40,7 +41,7 @@ export class ToDoListRepositoryImpl implements toDoListRepository {
 	}
 }
 
-const listParsed = (list: string, fromApi: boolean): ToDoListItem[] => {
+const listParsed = (list: string, fromApi: boolean): ToDoList => {
 	let toDoListParsed: toDoListItemApi[] = JSON.parse(list);
 	if (fromApi) {
 		setTodoListLocaLStorage(toDoListParsed);
@@ -53,5 +54,5 @@ const listParsed = (list: string, fromApi: boolean): ToDoListItem[] => {
 			id: element.id,
 		});
 	});
-	return newToDoList;
+	return { value: newToDoList };
 };

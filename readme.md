@@ -182,6 +182,14 @@ usar un .push para añadir algo, debemos crear un array nuevo desde 0 colocando
 los viejos elementos y los nuevos. Puede que toolkit lo admita de la manera
 mutable pero puede ocasionar bugs que no actualize los componentes.
 
+- SICLO DE LA PRESENTATION
+EVENT(HTML) -> LOGIC(JAVASCRIPT Y USECASES) -> STATE(REDUX Y CONTEXT)
+(PRESENTER)    (             CONTAINER                              )
+
+- PARA MANEJAR ASYNC
+SERVICIOS -> REPOSITORY -> USECASE  -> HANDLESOMETHING
+.then           ASYNC        ASYNC         .then
+
 ## UUID
 
 podemos utilizar la biblioteca llamada uuid para crear id únicos, de esta manera
@@ -216,11 +224,3 @@ container se le aclara colocando formContainer.jsx
 ## TODOS:
 
 - Opcional solo por visual : añadir una notificación al enviar el formulario con toast
-
-- SICLO DE LA PRESENTATION
-EVENT(HTML) -> LOGIC(JAVASCRIPT Y USECASES) -> STATE(REDUX Y CONTEXT)
-(PRESENTER)    (             CONTAINER                              )
-
-- PARA MANEJAR ASYNC
-SERVICIOS -> REPOSITORY -> USECASE  -> HANDLESOMETHING
-.then           ASYNC        ASYNC         .then

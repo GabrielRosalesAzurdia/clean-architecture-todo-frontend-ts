@@ -1,9 +1,9 @@
-import { ToDoListItem } from "@/domain/models";
+import { ToDoList } from "@/domain/models";
 import { Failure } from "@/domain/models";
 import { toDoListRepository } from "@/domain/repositories";
 
 export interface getList {
-	getlist(): Promise<ToDoListItem[] | Failure>;
+	getlist(): Promise<ToDoList | Failure>;
 }
 
 export class getListImpl implements getList {
@@ -13,7 +13,7 @@ export class getListImpl implements getList {
 		this.repository = repository;
 	}
 
-	getlist(): Promise<ToDoListItem[] | Failure> {
+	getlist(): Promise<ToDoList | Failure> {
 		return this.repository.getToDoList();
 	}
 }

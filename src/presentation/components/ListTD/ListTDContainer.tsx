@@ -23,7 +23,7 @@ const ListTDContainer: React.FC<ListTDContainerInterface> = () => {
 				console.log("no pues salio failurse en listTD");
 				return;
 			}
-			dispatch(setToDoList(response));
+			dispatch(setToDoList(response.value));
 			dispatch(turnOffformTDLoading());
 		});
 	}, []);
