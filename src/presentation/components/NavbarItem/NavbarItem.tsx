@@ -12,7 +12,7 @@ const NavbarItem: React.FC<NavbarItemInterface> = ({ link, name }) => {
 			<NavLink
 				to={link}
 				className={(isActive) =>
-					isActive
+					isActive.isActive
 						? "text-white font-extrabold underline"
 						: "text-white font-extrabold"
 				}

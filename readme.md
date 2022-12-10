@@ -10,6 +10,19 @@ Esta aplicación es una lista de cosas por hacer, el front end se encarga de
 mosrtrarlas mientras que la lista de datos se encuentra en el back end, que es
 una api rest
 
+## Instrucciones para correr
+
+Descargar proyecto o clonarlo con git clone, luego en la carpeta del proyecto abrir
+la cmd y ejecutar 
+
+> npm install 
+
+luego correr
+
+> npm run dev
+
+y gualá! 
+
 ## Estructura
 
 Este proyecto es un ejemplo de clean architecture utilizando la siguiente estructura
@@ -221,6 +234,10 @@ Normalmente si se tiene un componente que muestra un formulario al
 componente presentational solo se le llama form.jsx mientras que al 
 container se le aclara colocando formContainer.jsx
 
-## TODOS:
+## Hot Toast
 
-- Opcional solo por visual : añadir una notificación al enviar el formulario con toast
+Solo para poner una notificación al enviar el formulario de feedback para hacer
+saber el usuario que el formulario fue enviado
+
+> npm install react-hot-toast
+

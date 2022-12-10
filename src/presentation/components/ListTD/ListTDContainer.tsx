@@ -7,6 +7,7 @@ import {
 } from "@/presentation/redux/slices/loadingSlice";
 import { setToDoList } from "@/presentation/redux/slices/toDoListSlice";
 import React, { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { ListTD } from ".";
 
 interface ListTDContainerInterface {}
@@ -20,7 +21,7 @@ const ListTDContainer: React.FC<ListTDContainerInterface> = () => {
 		dispatch(turnOnformTDLoading());
 		getListMethod().then((response) => {
 			if (response instanceof Failure) {
-				console.log("no pues salio failurse en listTD");
+				toast.error("A failure happened on the list :(");
 				return;
 			}
 			dispatch(setToDoList(response.value));

@@ -7,6 +7,7 @@ import {
 } from "@/presentation/redux/slices/loadingSlice";
 import { deleteToDoListItem } from "@/presentation/redux/slices/toDoListSlice";
 import React from "react";
+import { toast } from "react-hot-toast";
 import ListTDItem from "./ListTDItem";
 
 interface ListTDItemContainerInterface {
@@ -26,7 +27,7 @@ const ListTDItemContainer: React.FC<ListTDItemContainerInterface> = ({
 		dispatch(turnOnformTDLoading());
 		deleteItemMethod(id).then((response) => {
 			if (response instanceof Failure) {
-				console.log("no pues salio failurse en ListTDItem");
+				toast.error("A failure happened on the list item :(");
 				return;
 			}
 			if (response == Responses.SUCCESS_DELETE) {

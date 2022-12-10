@@ -8,6 +8,7 @@ import {
 	turnOffformTDLoading,
 	turnOnformTDLoading,
 } from "@/presentation/redux/slices/loadingSlice";
+import { toast } from "react-hot-toast";
 
 interface FormTDContainerInterface {}
 
@@ -22,7 +23,7 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 		addItemMethod(e.target.title.value, e.target.description.value).then(
 			(response) => {
 				if (response instanceof Failure) {
-					console.log("no pues salió Failure en formTDContainer");
+					toast.error("A failure happened on the todo form :(");
 					return;
 				}
 				setformValues({ title: "", description: "" });

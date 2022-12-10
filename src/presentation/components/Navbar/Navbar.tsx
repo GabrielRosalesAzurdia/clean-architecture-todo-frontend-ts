@@ -1,13 +1,13 @@
 import React from "react";
-import NavbarItem from "../NavbarItem/NavbarItem";
+import NavbarItemContainer from "../NavbarItem/NavbarItemContainer";
 
 interface NavbarInterface {}
 
 const Navbar: React.FC<NavbarInterface> = () => {
 	return (
 		<ul className="flex items-center p-6 bg-sky-500">
-			<NavbarItem link="/home" name="Home" />
-			<NavbarItem link="/faq" name="FAQ" />
+			<NavbarItemContainer link="/home" name="Home" />
+			<NavbarItemContainer link="/faq" name="FAQ" />
 		</ul>
 	);
 };

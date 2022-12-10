@@ -7,7 +7,8 @@ import {
 import React, { useContext, useState } from "react";
 import { QuestionContext } from "../../context";
 import sendMessagueMethod from "../../logic/userFeedback/userQuestionMethods";
-import FormQuestion from "./FormQuestion";
+import FormQuestion from "./FormUserFeedback";
+import toast from "react-hot-toast";
 
 interface FormQuestionContainerInterface {}
 
@@ -30,11 +31,11 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 			message: e.target.message.value,
 		}).then((response) => {
 			if (response instanceof Failure) {
-				console.log("hubo failure");
+				toast.error("A failure happened on the feedback form :(");
 			}
 			setmessageField("");
-			console.log("enviado");
 			dipatch(turnOffformFAQLoading());
+			toast.success("Sended! thank you ;)");
 		});
 	};
 
