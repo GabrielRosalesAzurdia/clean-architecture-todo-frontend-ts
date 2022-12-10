@@ -215,14 +215,6 @@ container se le aclara colocando formContainer.jsx
 
 ## TODOS:
 
-- Agregar las preguntas al QuestionContainer, hacer un map y mostrar 
-cada elemento con QuestionItemContainer.
-
-- Agregar las pregunas al formContainer para la droplist. 
-
-- Enviar datos al backend para resibir las dudas sobre cambio utilizando 
-el modelo UserFeedback
-
 - Convertir el loading en con componente 
 
 - Convertir el bloque negro de YOUR TODOS en un componente

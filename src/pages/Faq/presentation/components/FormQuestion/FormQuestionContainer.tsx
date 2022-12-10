@@ -1,11 +1,15 @@
 import { Failure } from "@/domain/models";
-import React from "react";
+import React, { useContext } from "react";
+import { QuestionContext } from "../../context";
 import sendMessagueMethod from "../../logic/userFeedback/userQuestionMethods";
 import FormQuestion from "./FormQuestion";
 
 interface FormQuestionContainerInterface {}
 
 const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
+
+	const { questionState } = useContext(QuestionContext);
+
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
 		sendMessagueMethod({
@@ -19,7 +23,7 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 		});
 	};
 
-	return <FormQuestion handleSubmit={handleSubmit} />;
+	return <FormQuestion handleSubmit={handleSubmit} questionList={questionState} />;
 };
 
 export default FormQuestionContainer;
