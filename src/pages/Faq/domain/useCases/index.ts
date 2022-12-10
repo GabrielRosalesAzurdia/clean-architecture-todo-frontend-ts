@@ -1,1 +1,1 @@
-export * from "./UserQuestionUseCase/UserQuestionUseCase";
+export * from "./UserFeedbackUseCase";

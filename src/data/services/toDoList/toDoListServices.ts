@@ -8,7 +8,7 @@ import {
 export function getTodoListLocaLStorage(): string {
 	let listFromLocalStorage = localStorage.getItem("todolist");
 	if (!listFromLocalStorage) {
-		throw new LocalStorageError("No hay lista");
+		throw new LocalStorageError("No hay lista todo");
 	}
 	return listFromLocalStorage;
 }

@@ -1,3 +1,10 @@
 import { createContext } from "react";
+import { QuestionList } from "../../domain/models";
 
-export const QuestionContext = createContext({});
+interface QuestionContextProps {
+	questionState: QuestionList;
+}
+
+export const QuestionContext = createContext<QuestionContextProps>(
+	{} as QuestionContextProps
+);

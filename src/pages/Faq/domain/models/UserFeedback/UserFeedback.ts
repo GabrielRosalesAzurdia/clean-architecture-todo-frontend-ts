@@ -1,4 +1,4 @@
-export interface UserQuestion {
+export interface UserFeedback {
 	questionTitle: string;
 	message: string;
 }

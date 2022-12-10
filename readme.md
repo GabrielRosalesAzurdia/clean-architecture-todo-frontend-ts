@@ -221,15 +221,11 @@ cada elemento con QuestionItemContainer.
 - Agregar las pregunas al formContainer para la droplist. 
 
 - Enviar datos al backend para resibir las dudas sobre cambio utilizando 
-el modelo UserQuestion
+el modelo UserFeedback
 
-- IDEA: mantener el localStorage como almacenamiento local , da :). Guardar en el local storage al mismo tiempo que en el api y también actualizarlo según la api
-En el repositorio una sola functión como obtener lista de todos debe 
-hacer la mmada al api, si no jala llamar al localStorage, 
-podríamos crear dos funciones distintas pero en una solo está todo integrado
-El store seguirá teniendo operaciones de agregar y eliminar elementos, esto 
-para no hacer llamadas grandes a la api y solo agregar elementos individuales,
-ahorra recursos y llamadas a la api y al local.
+- Convertir el loading en con componente 
+
+- Convertir el bloque negro de YOUR TODOS en un componente
 
 - SICLO DE LA PRESENTATION
 EVENT(HTML) -> LOGIC(JAVASCRIPT Y USECASES) -> STATE(REDUX Y CONTEXT)

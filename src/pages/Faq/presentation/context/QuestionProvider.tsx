@@ -33,7 +33,7 @@ interface QuestionContextInterface{
 
 export const QuestionProvider:React.FC<QuestionContextInterface> = ({children})=>{
     const questions = INITIAL_STATE;
-    return <QuestionContext.Provider value={{questions}}>
+    return <QuestionContext.Provider value={{questionState:questions}}>
         {children}
     </QuestionContext.Provider>
 }

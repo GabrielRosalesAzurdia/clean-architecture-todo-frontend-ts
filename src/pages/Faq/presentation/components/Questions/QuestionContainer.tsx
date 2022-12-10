@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { QuestionContext } from "../../context";
+import Question from "./Question";
 
 interface QuestionContainerInterface {}
 
 const QuestionContainer: React.FC<QuestionContainerInterface> = () => {
-	return <div>QuestionContainer</div>;
+	const { questionState } = useContext(QuestionContext);
+	return <Question questionList={questionState}/>;
 };
 
 export default QuestionContainer;
