@@ -215,9 +215,7 @@ container se le aclara colocando formContainer.jsx
 
 ## TODOS:
 
-- Convertir el loading en con componente 
-
-- Convertir el bloque negro de YOUR TODOS en un componente
+- Opcional solo por visual : añadir una notificación al enviar el formulario con toast
 
 - SICLO DE LA PRESENTATION
 EVENT(HTML) -> LOGIC(JAVASCRIPT Y USECASES) -> STATE(REDUX Y CONTEXT)

@@ -2,8 +2,8 @@ import { Failure } from "@/domain/models";
 import getListMethod from "@/presentation/logic/toDoList/toDoListMethods";
 import { useAppDispatch, useAppSelector } from "@/presentation/redux/hooks";
 import {
-	turnOffLoading,
-	turnOnLoading,
+	turnOffformTDLoading,
+	turnOnformTDLoading,
 } from "@/presentation/redux/slices/loadingSlice";
 import { setToDoList } from "@/presentation/redux/slices/toDoListSlice";
 import React, { useEffect } from "react";
@@ -13,18 +13,18 @@ interface ListTDContainerInterface {}
 
 const ListTDContainer: React.FC<ListTDContainerInterface> = () => {
 	const toDoListState = useAppSelector((state) => state.toDoList.value);
-	const loadingState = useAppSelector((state) => state.loading);
+	const loadingState = useAppSelector((state) => state.loading.formTDLoading);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(turnOnLoading());
+		dispatch(turnOnformTDLoading());
 		getListMethod().then((response) => {
 			if (response instanceof Failure) {
 				console.log("no pues salio failurse en listTD");
 				return;
 			}
 			dispatch(setToDoList(response));
-			dispatch(turnOffLoading());
+			dispatch(turnOffformTDLoading());
 		});
 	}, []);
 

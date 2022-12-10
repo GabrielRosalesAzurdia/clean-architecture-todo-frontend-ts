@@ -4,7 +4,10 @@ import { useAppDispatch } from "@/presentation/redux/hooks";
 import { addToDoListItem } from "@/presentation/redux/slices/toDoListSlice";
 import { addItemMethod } from "@/presentation/logic";
 import { Failure } from "@/domain/models";
-import { turnOffLoading, turnOnLoading } from "@/presentation/redux/slices/loadingSlice";
+import {
+	turnOffformTDLoading,
+	turnOnformTDLoading,
+} from "@/presentation/redux/slices/loadingSlice";
 
 interface FormTDContainerInterface {}
 
@@ -15,17 +18,16 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		dispatch(turnOnLoading());
+		dispatch(turnOnformTDLoading());
 		addItemMethod(e.target.title.value, e.target.description.value).then(
 			(response) => {
-				console.log(response);
 				if (response instanceof Failure) {
 					console.log("no pues salió Failure en formTDContainer");
 					return;
 				}
 				setformValues({ title: "", description: "" });
 				dispatch(addToDoListItem(response));
-				dispatch(turnOffLoading());
+				dispatch(turnOffformTDLoading());
 			}
 		);
 	};
