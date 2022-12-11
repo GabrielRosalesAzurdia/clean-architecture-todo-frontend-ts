@@ -1,6 +1,6 @@
 import { ListTDContainer } from "@/presentation/components";
 import React from "react";
-import { FormQuestionContainer, QuestionContainer } from "./presentation";
+import { FormQuestionContainer, QuestionsContainer } from "./presentation";
 import { QuestionProvider } from "./presentation/context";
 
 export interface FaqInterface {}
@@ -18,7 +18,7 @@ const Faq: React.FC<FaqInterface> = () => {
 					className="w-full sm:w-1/2 overflow-y-scroll"
 					style={{ maxHeight: "40rem", height: "40rem" }}
 				>
-					<QuestionContainer />
+					<QuestionsContainer />
 				</div>
 				<div
 					className="w-full sm:w-1/2 overflow-y-scroll"

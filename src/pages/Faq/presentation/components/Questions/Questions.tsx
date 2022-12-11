@@ -3,7 +3,7 @@ import TitleCardContainer from "@/presentation/components/TitleCard/TitleCardCot
 import React from "react";
 import { QuestionItem } from "../QuestionItem";
 
-interface QuestionInterface {
+interface QuestionsInterface {
 	/**
 	 * List of {@link Question}
 	 */
@@ -14,7 +14,7 @@ interface QuestionInterface {
  * Creates the list of frequent asked questions with style classes and mapping
  * @returns JSX
  */
-const Question: React.FC<QuestionInterface> = ({ questionList }) => {
+const Questions: React.FC<QuestionsInterface> = ({ questionList }) => {
 	return (
 		<section className="text-center pt-5">
 			<TitleCardContainer titleText={"Frequent Asked Questions"} />
@@ -33,4 +33,4 @@ const Question: React.FC<QuestionInterface> = ({ questionList }) => {
 	);
 };
 
-export default Question;
+export default Questions;
