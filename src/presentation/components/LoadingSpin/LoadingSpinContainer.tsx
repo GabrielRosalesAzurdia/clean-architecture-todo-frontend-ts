@@ -3,8 +3,14 @@ import LoadingSpin from "./LoadingSpin";
 
 interface LoadingSpinLoadingSpinContainerInterface {}
 
-const LoadingSpinContainer: React.FC<LoadingSpinLoadingSpinContainerInterface> = () => {
-	return <LoadingSpin/>
+/**
+ * Calls the {@link LoadingSpin} component
+ * @returns JSX
+ */
+const LoadingSpinContainer: React.FC<
+	LoadingSpinLoadingSpinContainerInterface
+> = () => {
+	return <LoadingSpin />;
 };
 
-export default LoadingSpin;
+export default LoadingSpinContainer;

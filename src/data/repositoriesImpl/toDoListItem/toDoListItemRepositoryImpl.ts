@@ -14,9 +14,15 @@ import {
 } from "@/domain/models";
 import { toDoListItemRepository } from "@/domain/repositories";
 
-//* Implements the repository with actual use of the services and adaptation
-//* of the data
+/**
+ * Implementation of the repository used by the {@link ToDoListItem}
+ */
 export class ToDoListItemRepositoryImpl implements toDoListItemRepository {
+	/**
+	 * Implementation of the addItemToList method
+	 * @param item - A {@link ToDoListItem} object that will be added to the list, goes without id
+	 * @returns Either the {@link ToDoListItem} with the id given by the api or a {@link LocaLStorageFailure} | {@link ServerFailure}
+	 */
 	async addItemToList(item: ToDoListItem): Promise<ToDoListItem | Failure> {
 		try {
 			let response = await addItemToListApi(item);
@@ -40,6 +46,11 @@ export class ToDoListItemRepositoryImpl implements toDoListItemRepository {
 		}
 	}
 
+	/**
+	 * Implementation of the deleteItemFromList method
+	 * @param id - The id of the {@link ToDoListItem} that wants to be deleted
+	 * @returns Either `a json respose from the api` or a {@link LocaLStorageFailure} | {@link ServerFailure}
+	 */
 	async deleteItemFromList(id: string) {
 		try {
 			let response = await deleteItemFromListApi(id);

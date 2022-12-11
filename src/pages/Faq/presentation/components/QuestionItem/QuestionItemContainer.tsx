@@ -2,11 +2,24 @@ import React from "react";
 import QuestionItem from "./QuestionItem";
 
 interface QuestionItemContainerInterface {
-	title:string
-	text:string
+	/**
+	 * Title of the question
+	 */
+	title: string;
+	/**
+	 * Answer to the question
+	 */
+	text: string;
 }
 
-const QuestionItemContainer: React.FC<QuestionItemContainerInterface> = ({title,text}) => {
+/**
+ * Calles the {@link QuestionItem} component
+ * @returns JSX
+ */
+const QuestionItemContainer: React.FC<QuestionItemContainerInterface> = ({
+	title,
+	text,
+}) => {
 	return <QuestionItem title={title} text={text} />;
 };
 

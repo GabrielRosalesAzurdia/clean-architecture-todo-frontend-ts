@@ -1,9 +1,16 @@
 import React from "react";
 
 interface TitleCardInterface {
+	/**
+	 * Title of the card
+	 */
 	titleText: string;
 }
 
+/**
+ * Creates a card to hold titles
+ * @returns JSX
+ */
 const TitleCard: React.FC<TitleCardInterface> = ({ titleText }) => {
 	return (
 		<div className="flex justify-center pb-5">

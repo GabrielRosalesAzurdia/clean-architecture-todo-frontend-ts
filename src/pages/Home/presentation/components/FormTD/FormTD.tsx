@@ -1,12 +1,30 @@
 import React from "react";
 
 interface FormInterface {
+	/**
+	 * Handles the form submit event from the form
+	 * @param e - The submit event
+	 */
 	handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+	/**
+	 * Handles the change event from the form fields
+	 * @param e - The change event
+	 */
 	handleChange(e: React.ChangeEvent<HTMLInputElement>): void;
+	/**
+	 * value for the title todo form field
+	 */
 	title: string;
+	/**
+	 * value for the description todo form field
+	 */
 	description: string;
 }
 
+/**
+ * Creates a form to add items to the to do list
+ * @returns JSX
+ */
 const FormTD: React.FC<FormInterface> = ({
 	handleSubmit,
 	handleChange,

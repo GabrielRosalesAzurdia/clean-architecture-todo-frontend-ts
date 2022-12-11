@@ -1,6 +1,11 @@
 import { Question } from "../Question/Question";
 
-//* Definition of a list that is going to have a bunch of toDoListItems 
+/**
+ * Structure of a list of {@link Question}
+ */
 export interface QuestionList {
+	/**
+	 * Contains a list of {@link Question}
+	 */
 	value: Question[];
 }

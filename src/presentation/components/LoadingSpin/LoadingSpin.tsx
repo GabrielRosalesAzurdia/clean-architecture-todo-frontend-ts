@@ -2,6 +2,10 @@ import React from "react";
 
 interface LoadingSpinInterface {}
 
+/**
+ * Creates a loading spin
+ * @returns JSX
+ */
 const LoadingSpin: React.FC<LoadingSpinInterface> = () => {
 	return (
 		<div className="text-center">

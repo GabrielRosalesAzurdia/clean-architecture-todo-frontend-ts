@@ -1,14 +1,22 @@
-import { ToDoListItem, toDoListItemApi } from "@/domain/models";
+//* Gets data from the Local Storage and the api for the ToDoListItem
+import { Responses, ToDoListItem, toDoListItemApi } from "@/domain/models";
 import { ServerError, LocalStorageError } from "@/domain/models";
 import { v4 as uuid } from "uuid";
 
-//* Adds data to the local storage
+/**
+ * Adds a to do list item to the local storage
+ * @param item - A {@link toDoListItemApi} to be added
+ * @returns the item given as a param
+ *
+ * @throws {@link LocalStorageError}
+ * This error happens if the list does not exist in the local storage
+ */
 export function addItemToListLocalStorage(
 	item: toDoListItemApi
 ): toDoListItemApi {
 	const listLocalStorage = localStorage.getItem("todolist");
 	if (!listLocalStorage) {
-		throw new LocalStorageError("el Local Store fallo en addTodoListItem");
+		throw new LocalStorageError("There is not a todo list");
 	}
 	const list = JSON.parse(listLocalStorage);
 	list.push(item);
@@ -16,7 +24,14 @@ export function addItemToListLocalStorage(
 	return item;
 }
 
-//*  Adds data to the api
+/**
+ * Adds a to do list item to the api
+ * @param item - A {@link ToDoListItem} to be added
+ * @returns A promise with a {@link toDoListItemApi} object
+ *
+ * @throws {@link ServerError}
+ * This error happens if the api fails
+ */
 export async function addItemToListApi(
 	item: ToDoListItem
 ): Promise<toDoListItemApi> {
@@ -40,7 +55,14 @@ const mockBackendCreateToDoListItem = (
 	});
 };
 
-//* Deletes an element from the local storage
+/**
+ * Deletes a to do list item from the local storage
+ * @param id - The id of the item to be deleted
+ * @returns A JSON with a success status
+ *
+ * @throws {@link LocalStorageError}
+ * This error happens if the list does not exist in the local storage
+ */
 export function deleteItemFromListLocalStorage(id: string): string {
 	const listLocalStorage = localStorage.getItem("todolist");
 	if (!listLocalStorage) {
@@ -49,11 +71,17 @@ export function deleteItemFromListLocalStorage(id: string): string {
 	let list = JSON.parse(listLocalStorage);
 	let newList = list.filter((element: toDoListItemApi) => element.id != id);
 	localStorage.setItem("todolist", JSON.stringify(newList));
-	return "{success:204}";
+	return Responses.SUCCESS_DELETE;
 }
 
-//* Deletes an element from the api
-export async function deleteItemFromListApi(id: string): Promise<string> {
+/**
+ * Deletes a to do list item from api
+ * @param id - The id of the item to be deleted
+ * @returns A json respose from the api
+ *
+ * @throws {@link ServerError}
+ * This error happens if the api fails
+ */ export async function deleteItemFromListApi(id: string): Promise<string> {
 	return mockBackendDeleteToDoListItem(id)
 		.then((response) => {
 			return response;

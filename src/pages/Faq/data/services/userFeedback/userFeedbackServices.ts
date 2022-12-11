@@ -1,8 +1,15 @@
+//* Services used by the UseFeedback
 import { ServerError } from "@/domain/models";
 import { UserFeedback } from "@/pages/Faq/domain/models";
 
-//* Post the data to the api
-export async function postUserFeedbackApi(
+/**
+ * Posts a user feedback to the api
+ * @param feedback - A {@link UserFeedback} to be posted
+ * @returns A json respose from the api`
+ *
+ * @throws {@link ServerError}
+ * This error happens if the api fails
+ */ export async function postUserFeedbackApi(
 	feedback: UserFeedback
 ): Promise<string> {
 	return mockBackendPostUserFeedback(feedback)

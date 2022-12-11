@@ -3,6 +3,10 @@ import { Faq, Home } from "./pages";
 import {Toaster} from 'react-hot-toast'
 import NavbarContainer from "./presentation/components/Navbar/NavbarContainer";
 
+/**
+ * Start the app and sets the router
+ * @returns JSX
+ */
 function App() {
 	return (
 		<div>

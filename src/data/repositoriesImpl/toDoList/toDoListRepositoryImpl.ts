@@ -15,9 +15,14 @@ import {
 } from "@/domain/models";
 import { toDoListRepository } from "@/domain/repositories";
 
-//* Implements the repository with actual use of the services and adaptation
-//* of the data
+/**
+ * Implementation of the repository used by the {@link ToDoList}
+ */
 export class ToDoListRepositoryImpl implements toDoListRepository {
+	/**
+	 * Implementation of the getToDoList method
+	 * @returns Either a {@link ToDoList} or a {@link LocaLStorageFailure} | {@link ServerFailure}
+	 */
 	async getToDoList(): Promise<ToDoList | Failure> {
 		try {
 			let toDoListApi = await getTodoListApi();
@@ -41,6 +46,12 @@ export class ToDoListRepositoryImpl implements toDoListRepository {
 	}
 }
 
+/**
+ * Helper function to the implementation of the implementation {@link getToDoList} method
+ * @param list - A JSON list of todos
+ * @param fromApi - A flag to set the local storage or not
+ * @returns A list of todos in the frontend format
+ */
 const listParsed = (list: string, fromApi: boolean): ToDoList => {
 	let toDoListParsed: toDoListItemApi[] = JSON.parse(list);
 	if (fromApi) {

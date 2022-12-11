@@ -5,11 +5,24 @@ import { LoadingSpinContainer } from "../LoadingSpin";
 import TitleCardContainer from "../TitleCard/TitleCardCotainer";
 
 interface ListTDInterface {
+	/**
+	 * List of to dos
+	 */
 	toDoList: ToDoListItem[];
+	/**
+	 * Text to show when there is no to dos
+	 */
 	noDataText: string;
+	/**
+	 * Flag to know if its loading data
+	 */
 	loading: boolean;
 }
 
+/**
+ * Creates the list of todos with mapping and shows the loading spin when activated
+ * @returns JSX
+ */
 const ListTD: React.FC<ListTDInterface> = ({
 	toDoList,
 	noDataText,

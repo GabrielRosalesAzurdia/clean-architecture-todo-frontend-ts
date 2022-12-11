@@ -12,6 +12,10 @@ import toast from "react-hot-toast";
 
 interface FormQuestionContainerInterface {}
 
+/**
+ * Manages state, functions and calls the {@link FormQuestion} component
+ * @returns JSX
+ */
 const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 	const { questionState } = useContext(QuestionContext);
 
@@ -23,6 +27,10 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 
 	const dipatch = useAppDispatch();
 
+	/**
+	 * Handles the submit from the use feedback form
+	 * @param e - The submit event from the form
+	 */
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 		dipatch(turnOnformFAQLoading());
@@ -43,6 +51,10 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 		});
 	};
 
+	/**
+	 * Handles the change event from the form field to save its value
+	 * @param e - The change event from the form field
+	 */
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setmessageField(e.target.value);
 	};
@@ -50,7 +62,7 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 	return (
 		<FormQuestion
 			handleSubmit={handleSubmit}
-			questionList={questionState}
+			questionList={questionState.value}
 			messageField={messageField}
 			handleChange={handleChange}
 			loading={formFAQloadingState}

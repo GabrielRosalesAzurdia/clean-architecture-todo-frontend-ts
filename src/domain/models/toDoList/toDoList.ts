@@ -1,6 +1,11 @@
 import { ToDoListItem } from "../toDoListItem";
 
-//* Definition of a list that is going to have a bunch of toDoListItems 
+/**
+ * Structure of a list of {@link ToDoListItem}
+ */
 export interface ToDoList {
+	/**
+	 * Contains a list of {@link ToDoListItem}
+	 */
 	value: ToDoListItem[];
 }

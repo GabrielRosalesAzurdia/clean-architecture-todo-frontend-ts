@@ -1,7 +1,14 @@
 import { Failure } from "@/domain/models";
 import { UserFeedback } from "../../models";
 
-//* Definition of the repository, what it needs and what will return
+/**
+ * Contract of the repository used by the {@link UserFeedback}
+ */
 export interface UserFeedbackRepository {
-	sendUserFeedback(item: UserFeedback): Promise<string|Failure>;
+	/**
+	 * Contract of the sendUserFeedback method
+	 * @param item - A {@link UserFeedback} to be posted
+	 * @returns Either `a json respose from the api` or a {@link Failure}
+	 */
+	sendUserFeedback(item: UserFeedback): Promise<string | Failure>;
 }

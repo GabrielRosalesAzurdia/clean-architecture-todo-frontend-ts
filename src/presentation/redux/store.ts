@@ -2,9 +2,21 @@ import { configureStore } from "@reduxjs/toolkit";
 import toDoListReducer from "./slices/toDoListSlice";
 import loadingReduccer from "./slices/loadingSlice";
 
+/**
+ * Store that handles the state of the app
+ */
 export const store = configureStore({
+	/**
+	 * State of the app
+	 */
 	reducer: {
+		/**
+		 * State of the to do list
+		 */
 		toDoList: toDoListReducer,
+		/**
+		 * State of the loading spin
+		 */
 		loading: loadingReduccer,
 	},
 });

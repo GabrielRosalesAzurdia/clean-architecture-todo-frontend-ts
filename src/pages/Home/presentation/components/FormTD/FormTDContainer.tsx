@@ -12,17 +12,26 @@ import { toast } from "react-hot-toast";
 
 interface FormTDContainerInterface {}
 
+/**
+ * Manages state and functions, calls the {@link FormTD} component
+ * @returns JSX
+ */
 const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 	const [formValues, setformValues] = useState({ title: "", description: "" });
 
 	const dispatch = useAppDispatch();
 
+	/**
+	 * Handles the submit from the to do form
+	 * @param e - The submit event from the form
+	 */
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 		dispatch(turnOnformTDLoading());
 		addItemMethod(
 			(e.currentTarget.elements.namedItem("title") as HTMLInputElement).value,
-			(e.currentTarget.elements.namedItem("description") as HTMLInputElement).value
+			(e.currentTarget.elements.namedItem("description") as HTMLInputElement)
+				.value
 		).then((response) => {
 			if (response instanceof Failure) {
 				toast.error("A failure happened on the todo form :(");
@@ -34,6 +43,10 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 		});
 	};
 
+	/**
+	 * Handles the change event from the form fields to save their values
+	 * @param e - The change event from the form fields
+	 */
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setformValues({
 			...formValues,

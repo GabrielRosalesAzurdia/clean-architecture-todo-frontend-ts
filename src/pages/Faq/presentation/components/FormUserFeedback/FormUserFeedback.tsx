@@ -1,12 +1,29 @@
-import { QuestionList } from "@/pages/Faq/domain/models";
+import { Question } from "@/pages/Faq/domain/models";
 import { LoadingSpinContainer } from "@/presentation/components";
 import React from "react";
 
 interface FormQuestionInterface {
+	/**
+	 * Handles the form submit event from the form
+	 * @param e - The submit event
+	 */
 	handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
-	questionList: QuestionList;
+	/**
+	 * List of questions to put in the dropdown
+	 */
+	questionList: Question[];
+	/**
+	 * value for the message field of the form
+	 */
 	messageField: string;
+	/**
+	 * Handles the change event from the form field
+	 * @param e - The change event
+	 */
 	handleChange(e: React.ChangeEvent<HTMLInputElement>): void;
+	/**
+	 * Flag to know if its loading data
+	 */
 	loading: boolean;
 }
 
@@ -36,8 +53,8 @@ const FormQuestion: React.FC<FormQuestionInterface> = ({
 						name="title"
 						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 					>
-						{questionList.value.length > 0 ? (
-							questionList.value.map((element, index) => {
+						{questionList.length > 0 ? (
+							questionList.map((element, index) => {
 								return (
 									<option key={index} value={element.title}>
 										{element.title}

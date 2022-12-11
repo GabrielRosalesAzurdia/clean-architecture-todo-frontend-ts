@@ -5,6 +5,11 @@ import { QuestionProvider } from "./presentation/context";
 
 export interface FaqInterface {}
 
+/**
+ * FAQ page
+ * Uses the {@link QuestionProvider} context
+ * Uses the {@link QuestionContainer}, {@link ListTDContainer} and {@link FormQuestionContainer} components
+ */
 const Faq: React.FC<FaqInterface> = () => {
 	return (
 		<QuestionProvider>
