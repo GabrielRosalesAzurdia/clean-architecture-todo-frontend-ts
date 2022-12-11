@@ -244,3 +244,5 @@ saber el usuario que el formulario fue enviado
 
 - (opcional) cambiar el render por .map a una función separada que 
 devuelva el jsx y solo llamarla
+
+- Hacer una implementación de !18next para idiomas
