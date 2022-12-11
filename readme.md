@@ -27,15 +27,14 @@ y gualá!
 
 Este proyecto es un ejemplo de clean architecture utilizando la siguiente estructura
 
-src/ (root de la app)
-application/ (casos de uso y utilities)
-assets/ (imágenes y archivos multimedia)
-domain/ (estado y estructuras)
-infrastructure/ (llamadas a la api y repositories)
-pages/ (las vistas)
-presentation/ (los componentes que son globales)
-App.jsx (archivo app)
-main.jsx (archivo principal de React)
+- src/ (root de la app)
+- presentation/ (componentes, implementacion de use cases, redux y context)
+- assets/ (imágenes y archivos multimedia)
+- domain/ (estructuras y contratos)
+- data/ (llamadas a la api y repositories)
+- pages/ (las vistas)
+- App.jsx (archivo app)
+- main.jsx (archivo principal de React)
 
 Algunas aclaraciones:
 
@@ -242,8 +241,6 @@ saber el usuario que el formulario fue enviado
 > npm install react-hot-toast
 
 ## TODO
-
-- Mejorar documentación
 
 - (opcional) cambiar el render por .map a una función separada que 
 devuelva el jsx y solo llamarla
