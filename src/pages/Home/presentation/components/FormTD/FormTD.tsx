@@ -1,8 +1,8 @@
 import React from "react";
 
 interface FormInterface {
-	handleSubmit(e: any): any;
-	handleChange(e: any): any;
+	handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+	handleChange(e: React.ChangeEvent<HTMLInputElement>): void;
 	title: string;
 	description: string;
 }

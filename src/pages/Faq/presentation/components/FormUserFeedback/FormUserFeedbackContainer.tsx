@@ -23,12 +23,16 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 
 	const dipatch = useAppDispatch();
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 		dipatch(turnOnformFAQLoading());
 		sendMessagueMethod({
-			questionTitle: e.target.title.value,
-			message: e.target.message.value,
+			questionTitle: (
+				e.currentTarget.elements.namedItem("title") as HTMLInputElement
+			).value,
+			message: (
+				e.currentTarget.elements.namedItem("message") as HTMLInputElement
+			).value,
 		}).then((response) => {
 			if (response instanceof Failure) {
 				toast.error("A failure happened on the feedback form :(");
@@ -39,7 +43,7 @@ const FormQuestionContainer: React.FC<FormQuestionContainerInterface> = () => {
 		});
 	};
 
-	const handleChange = (e: any) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setmessageField(e.target.value);
 	};
 

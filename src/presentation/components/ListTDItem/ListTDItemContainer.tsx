@@ -23,7 +23,7 @@ const ListTDItemContainer: React.FC<ListTDItemContainerInterface> = ({
 }) => {
 	const dispatch = useAppDispatch();
 
-	const handleClick = (id: string) => {
+	const handleClick = (id: string): void => {
 		dispatch(turnOnformTDLoading());
 		deleteItemMethod(id).then((response) => {
 			if (response instanceof Failure) {

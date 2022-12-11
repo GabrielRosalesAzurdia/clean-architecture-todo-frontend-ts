@@ -4,7 +4,7 @@ interface ListTDItemInterface {
 	title: string;
 	description: string;
 	id: string;
-	handleClick(id: string): any;
+	handleClick(id: string): void;
 }
 
 const ListTDItem: React.FC<ListTDItemInterface> = ({

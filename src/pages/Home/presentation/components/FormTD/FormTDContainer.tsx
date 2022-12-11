@@ -17,33 +17,27 @@ const FormTDContainer: React.FC<FormTDContainerInterface> = () => {
 
 	const dispatch = useAppDispatch();
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
 		dispatch(turnOnformTDLoading());
-		addItemMethod(e.target.title.value, e.target.description.value).then(
-			(response) => {
-				if (response instanceof Failure) {
-					toast.error("A failure happened on the todo form :(");
-					return;
-				}
-				setformValues({ title: "", description: "" });
-				dispatch(addToDoListItem(response));
-				dispatch(turnOffformTDLoading());
+		addItemMethod(
+			(e.currentTarget.elements.namedItem("title") as HTMLInputElement).value,
+			(e.currentTarget.elements.namedItem("description") as HTMLInputElement).value
+		).then((response) => {
+			if (response instanceof Failure) {
+				toast.error("A failure happened on the todo form :(");
+				return;
 			}
-		);
+			setformValues({ title: "", description: "" });
+			dispatch(addToDoListItem(response));
+			dispatch(turnOffformTDLoading());
+		});
 	};
 
-	const handleChange = (e: any) => {
-		if (e.target.name == "title") {
-			setformValues({
-				...formValues,
-				title: e.target.value,
-			});
-			return;
-		}
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		setformValues({
 			...formValues,
-			description: e.target.value,
+			[e.target.name]: e.target.value,
 		});
 	};
 

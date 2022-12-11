@@ -3,10 +3,10 @@ import { LoadingSpinContainer } from "@/presentation/components";
 import React from "react";
 
 interface FormQuestionInterface {
-	handleSubmit(e: any): any;
+	handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
 	questionList: QuestionList;
 	messageField: string;
-	handleChange(e: any): any;
+	handleChange(e: React.ChangeEvent<HTMLInputElement>): void;
 	loading: boolean;
 }
 
